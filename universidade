@@ -1,0 +1,33 @@
+-- Atividade de banco de dados no schema universidade
+
+SET search_path TO universidade;
+
+-- 1.1 Liste o cpf dos professores do departamento ‘DMA”.
+
+SELECT cpf FROM professor 
+	WHERE departamento = 'DMA';
+
+-- 1.2 Liste o id de todas as turmas que o aluno de matrícula ‘E101’ está cursando.
+
+SELECT id_turma FROM cursa 
+	WHERE mat_estudante = 'E101';
+
+-- 1.3 Liste o nome, sobrenome e cpf de todas as pessoas que têm telefone.
+
+SELECT primeiro_nome, sobrenome, cpf FROM usuario 
+	WHERE telefone is not null;
+
+-- 1.4 Liste o nome e código de todas as disciplinas que tenham pré-requisito e tenham mais de 2 créditos.
+
+SELECT nome, cod_disc FROM disciplina 
+	WHERE pre_req is not null and creditos > 2;
+	
+-- 1.5 Calcule a média de notas de todos os alunos.
+
+SELECT AVG(mc) FROM estudante;
+
+-- 1.6 Listar o número de professores que orientam algum aluno
+-- - Um professor orienta um aluno se ambos estão associados na tabela plano
+
+SELECT * FROM plano;
+SELECT count(DISTINCT mat_professor) FROM plano;
